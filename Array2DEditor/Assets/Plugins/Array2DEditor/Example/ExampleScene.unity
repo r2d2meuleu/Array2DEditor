@@ -273,6 +273,7 @@ GameObject:
   m_Component:
   - component: {fileID: 818097962}
   - component: {fileID: 818097963}
+  - component: {fileID: 818097964}
   m_Layer: 0
   m_Name: ExampleScript
   m_TagString: Untagged
@@ -301,7 +302,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 818097961}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 87da0a4a2b7aa7548b03c7a646a367a4, type: 3}
   m_Name: 
@@ -309,3 +310,16 @@ MonoBehaviour:
   array2DBool: {fileID: 11400000, guid: 3df41e4893a118e43b6719b0c44e2c69, type: 2}
   prefabToInstantiate: {fileID: 1098349222822146, guid: 75ed5123bc431ba44834864d493ab0a6,
     type: 3}
+--- !u!114 &818097964
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 818097961}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d5e8f68b3405af64fb6d05dcd2dce8bc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  array2D_Prefab: {fileID: 11400000, guid: b143f124326908b4ba8733125156a154, type: 2}

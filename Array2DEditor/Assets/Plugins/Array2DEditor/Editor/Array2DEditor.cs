@@ -17,7 +17,7 @@ namespace Array2DEditor
         protected SerializedProperty gridSize;
         protected SerializedProperty cells;
 
-        private Rect lastRect;
+        protected Rect lastRect;
         protected Vector2Int newGridSize;
         private bool gridSizeChanged = false;
         private bool wrongSize = false;
@@ -67,21 +67,7 @@ namespace Array2DEditor
 
                 if (GUILayout.Button("Apply", EditorStyles.miniButton))
                 {
-                    bool operationAllowed = false;
-
-                    if (newGridSize.x < gridSize.vector2IntValue.x || newGridSize.y < gridSize.vector2IntValue.y) // Smaller grid
-                    {
-                        operationAllowed = EditorUtility.DisplayDialog("Are you sure?", "You're about to reduce the width or height of the grid. This may erase some cells. Do you really want this?", "Yes", "No");
-                    }
-                    else // Bigger grid
-                    {
-                        operationAllowed = true;
-                    }
-
-                    if (operationAllowed)
-                    {
-                        InitNewGrid(newGridSize);
-                    }
+                    confirmNewGrid();
                 }
 
                 GUI.enabled = true;
@@ -107,12 +93,14 @@ namespace Array2DEditor
             serializedObject.ApplyModifiedProperties(); // Apply changes to all serializedProperties - always do this at the end of OnInspectorGUI.
         }
 
-        private void InitNewGrid(Vector2 newSize)
+        protected void InitNewGrid(Vector2 newSize)
         {
-            cells.ClearArray();
 
+            cells.ClearArray();
+            // gridSize.vector2IntValue = newGridSize;
             for (int i = 0; i < newSize.y; i++)
             {
+                
                 cells.InsertArrayElementAtIndex(i);
                 SerializedProperty row = GetRowAt(i);
 
@@ -127,7 +115,7 @@ namespace Array2DEditor
             gridSize.vector2IntValue = newGridSize;
         }
 
-        private void DisplayGrid(Rect startRect)
+        protected void DisplayGrid(Rect startRect)
         {
             Rect cellPosition = startRect;
 
@@ -164,6 +152,23 @@ namespace Array2DEditor
                 boldFontMethodInfo = typeof(EditorGUIUtility).GetMethod("SetBoldDefaultFont", BindingFlags.Static | BindingFlags.NonPublic);
 
             boldFontMethodInfo.Invoke(null, new[] { value as object });
+        }
+        protected void confirmNewGrid() {
+            bool operationAllowed = false;
+
+            if (newGridSize.x < gridSize.vector2IntValue.x || newGridSize.y < gridSize.vector2IntValue.y) // Smaller grid
+            {
+                operationAllowed = EditorUtility.DisplayDialog("Are you sure?", "You're about to reduce the width or height of the grid. This may erase some cells. Do you really want this?", "Yes", "No");
+            }
+            else // Bigger grid
+            {
+                operationAllowed = true;
+            }
+
+            if (operationAllowed)
+            {
+                InitNewGrid(newGridSize);
+            }
         }
     }
 }

@@ -12,8 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 349d81111bfb3e440af05ecd5f8e0ef9, type: 3}
   m_Name: Example_Int
   m_EditorClassIdentifier: 
-  gridSize: {x: 3, y: 3}
+  gridSize: {x: 3, y: 4}
   cells:
   - row: ffffffff0200000003000000
-  - row: 04000000fbffffff06000000
-  - row: 0700000008000000f7ffffff
+  - row: 04000000fbffffff06000000ffffffff0200000003000000
+  - row: 0700000008000000f7ffffff04000000fbffffff06000000ffffffff0200000003000000
+  - row: 0000000000000000000000000700000008000000f7ffffff04000000fbffffff06000000ffffffff0200000003000000
